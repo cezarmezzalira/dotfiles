@@ -21,7 +21,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-airline/vim-airline'    " Vim powerline
 " Vim Theme
 Plug 'sainnhe/sonokai'
-
+Plug 'ryanoasis/vim-devicons'
 
 " All of your Plugins must be added before the following line
 call plug#end()              " required
@@ -37,6 +37,17 @@ set wildmenu " when opening a file with e.g. :e ~/.vim<TAB> there is a graphical
 set ttyfast
 set lazyredraw
 set updatetime=300
+
+" Enable line highlight
+set cursorline
+hi cursorline cterm=none term=none
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+highlight CursorLine guibg=#303000 ctermbg=234
+
+" Download font JetBrainsMono with Nerd Font Patch
+" https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Medium/complete
+set guifont="JetBrainsMono Nerd Font Mono 13"
 
 " Numbers
 set number
@@ -135,6 +146,8 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+" Show hidden files on NERDTree
+let NERDTreeShowHidden=1
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
@@ -147,6 +160,13 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 " AutoRefresh when NERDTreeFocus
 autocmd BufEnter NERD_tree_* | execute 'normal R'
+
+" get rid of [  ] around icons in NerdTree
+" https://github.com/ryanoasis/vim-devicons/issues/154
+syntax enable
+if exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
+endif
 
 " CoC extensions
 let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-json']
