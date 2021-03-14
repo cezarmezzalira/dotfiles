@@ -69,6 +69,12 @@ let g:enable_bold_font = 1
 
 colorscheme sonokai
 
+" Tab Configuration
+map <leader>, :bp<cr>
+map <leader>. :bn<cr>
+
+" force reload current file
+map <leader>r :e!<CR>
 
 " Indentation
 set autoindent
@@ -88,7 +94,6 @@ set expandtab
 set termwinsize=12x0   " Set terminal size
 set splitbelow         " Always split below
 set mouse=a            " Enable mouse drag on window splits
-
 
 " Buffer Highlight
 syntax sync fromstart
@@ -135,10 +140,15 @@ nnoremap <silent><leader>/ :split<CR>
 nnoremap <silent><leader>w :w!<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
+
+" Source Vim configuration
+nnoremap <silent><leader>1 :w! \| :source ~/.vimrc<CR>
+
 " Open Vim configuration file for editing
 nnoremap <silent><leader>2 :e ~/.vimrc<CR>
+
 " Source Vim configuration file and install plugins
-nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+nnoremap <silent><leader>3 :source ~/.vimrc \| :PlugInstall<CR>
 
 " NERDTree Config
 nnoremap <leader>n :NERDTreeFocus<CR>
