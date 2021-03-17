@@ -47,7 +47,7 @@ highlight CursorLine guibg=#303000 ctermbg=234
 
 " Download font JetBrainsMono with Nerd Font Patch
 " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Medium/complete
-set guifont="JetBrainsMono Nerd Font Mono 13"
+set guifont="JetBrainsMono Nerd Font Mono 14"
 
 " Numbers
 set number
@@ -67,14 +67,20 @@ let g:sonokai_enable_italic_font = 1
 let g:sonokai_transparent_background = 1
 let g:enable_bold_font = 1
 
+" ColorScheme
 colorscheme sonokai
 
-" Tab Configuration
-map <leader>, :bp<cr>
-map <leader>. :bn<cr>
-
-" force reload current file
-map <leader>r :e!<CR>
+" Configure the Tabline
+let g:airline#extensions#neomake#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#show_buffers = 1 " enable/disable displaying buffers with a single tab
+let g:airline#extensions#tabline#show_splits = 1 "enable/disable displaying open splits per tab (only when tabs are opened). >
+let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tmuxline#enabled = 0
+let g:airline_section_z = airline#section#create(['%l/%c'])
 
 " Indentation
 set autoindent
@@ -132,9 +138,18 @@ set backspace=indent,eol,start
 " Open Buffer
 nnoremap <silent><leader>l :buffers<CR>
 " Vertically split screen
-nnoremap <silent><leader>\ :vs<CR>
+nnoremap <silent><leader>/ :vs<CR>
 " Split screen
-nnoremap <silent><leader>/ :split<CR>
+nnoremap <silent><leader>- :split<CR>
+" Delete Current Buffer
+nnoremap <silent><leader>' :bd<CR>
+
+" Buffers Navigation
+map <leader>, :bp<cr>
+map <leader>. :bn<cr>
+
+" force reload current file
+map <leader>r :e!<CR>
 
 " Faster saving and exiting
 nnoremap <silent><leader>w :w!<CR>
@@ -160,13 +175,13 @@ nnoremap <C-f> :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 
 " Start NERDTree when Vim starts with a directory argument.
-autocmd StdinReadPre * let s:std_in=1
+" autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-     \ quit | endif
+" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+"     \ quit | endif
 
 " AutoRefresh when NERDTreeFocus
 autocmd BufEnter NERD_tree_* | execute 'normal R'
