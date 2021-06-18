@@ -82,7 +82,7 @@ set softtabstop=2 " Number of spaces a tab counts when editing
 set expandtab
 
 " Terminal Settings
-set termwinsize=12x0   " Set terminal size
+" set termwinsize=12x0   " Set terminal size
 set splitbelow         " Always split below
 set mouse=a            " Enable mouse drag on window splits
 
@@ -194,15 +194,26 @@ map <leader>r :e!<CR>
 nnoremap <silent><leader>w :w!<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
+if has('nvim')
+  " Source Vim configuration
+  nnoremap <silent><leader>1 :w! \| :source ~/.config/nvim/init.vim<CR>
 
-" Source Vim configuration
-nnoremap <silent><leader>1 :w! \| :source ~/.vimrc<CR>
+  " Open Vim configuration file for editing
+  nnoremap <silent><leader>2 :e ~/.config/nvim/init.vim<CR>
 
-" Open Vim configuration file for editing
-nnoremap <silent><leader>2 :e ~/.vimrc<CR>
+  " Source Vim configuration file and install plugins
+  nnoremap <silent><leader>3 :source ~/.config/nvim/init.vim \| :PlugInstall<CR>
+else
+  " Source Vim configuration
+  nnoremap <silent><leader>1 :w! \| :source ~/.vimrc<CR>
 
-" Source Vim configuration file and install plugins
-nnoremap <silent><leader>3 :source ~/.vimrc \| :PlugInstall<CR>
+  " Open Vim configuration file for editing
+  nnoremap <silent><leader>2 :e ~/.vimrc<CR>
+
+  " Source Vim configuration file and install plugins
+  nnoremap <silent><leader>3 :source ~/.vimrc \| :PlugInstall<CR>
+
+endif
 
 " NERDTree Config
 nnoremap <silent>F :NERDTreeFocus<CR>
