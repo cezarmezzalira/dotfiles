@@ -17,6 +17,7 @@ Plug 'rstacruz/vim-hyperstyle'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pearofducks/ansible-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-scripts/SyntaxComplete',
 Plug 'HerringtonDarkholme/yats.vim'   " TypeScript syntax
 Plug 'othree/yajs.vim', {'for': 'javascript'}
 Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
@@ -29,7 +30,8 @@ Plug 'alvan/vim-closetag'
 
 " Vim Theme
 " Plug 'sainnhe/sonokai'
-Plug 'mhartington/oceanic-next'
+" Plug 'mhartington/oceanic-next'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'    " Vim powerline
 Plug 'majutsushi/tagbar'
@@ -93,21 +95,6 @@ syntax sync fromstart
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-fu! RestoreSess()
-if filereadable(getcwd() . '/Session.vim')
-    execute 'so ' . getcwd() . '/Session.vim'
-    if bufexists(1)
-        for l in range(1, bufnr('$'))
-            if bufwinnr(l) == -1
-                exec 'sbuffer ' . l
-            endif
-        endfor
-    endif
-endif
-endfunction
-
-autocmd VimEnter * nested call RestoreSess()
-
 " Delete empty space from the end of lines on every save
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -135,9 +122,15 @@ set number
 set numberwidth=4
 set ruler
 
-if has('termguicolors')
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
+" if has('termguicolors')
+"   set termguicolors
+" endif
 
 " get rid of [  ] around icons in NerdTree
 " https://github.com/ryanoasis/vim-devicons/issues/154
@@ -147,11 +140,19 @@ if exists("g:loaded_webdevicons")
 endif
 
 " ColorScheme
-colorscheme OceanicNext
-hi Normal guibg=NONE ctermbg=NONE
-hi LineNr guibg=NONE ctermbg=NONE
-hi SignColumn guibg=NONE ctermbg=NONE
-hi EndOfBuffer guibg=NONE ctermbg=NONE
+syntax on
+set t_Co=256
+set cursorline
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+" lightline
+let g:lightline = { 'colorscheme': 'onehalfdark' }
+
+" colorscheme OceanicNext
+" hi Normal guibg=NONE ctermbg=NONE
+" hi LineNr guibg=NONE ctermbg=NONE
+" hi SignColumn guibg=NONE ctermbg=NONE
+" hi EndOfBuffer guibg=NONE ctermbg=NONE
 
 " colorscheme sonokai
 " let g:sonokai_style = 'default'
@@ -190,10 +191,15 @@ map <leader>. :bn<cr>
 " force reload current file
 map <leader>r :e!<CR>
 
-" Faster saving and exiting
+" Alternate between windows
+map <leader>e <c-w>w<CR>
+
+
+"" Faster saving and exiting
 nnoremap <silent><leader>w :w!<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
+
 if has('nvim')
   " Source Vim configuration
   nnoremap <silent><leader>1 :w! \| :source ~/.config/nvim/init.vim<CR>
