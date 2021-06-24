@@ -10,7 +10,7 @@ Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 
 "Search
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'rstacruz/vim-hyperstyle'
