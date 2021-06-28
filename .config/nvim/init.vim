@@ -10,7 +10,7 @@ Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 
 "Search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'rstacruz/vim-hyperstyle'
@@ -24,14 +24,7 @@ Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'alvan/vim-closetag'
 
-" Plug 'leafgarland/typescript-vim' " TypeScript syntax
-" Plug 'styled-components/vim-styled-components'
-" Plug 'editorconfig/editorconfig-vim'
-
 " Vim Theme
-" Plug 'sainnhe/sonokai'
-" Plug 'mhartington/oceanic-next'
-" Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'rakr/vim-one'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'    " Vim powerline
@@ -99,8 +92,6 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " Delete empty space from the end of lines on every save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Auto Format
-autocmd BufWritePost * execute "normal gg=G"
 
 " Set default encoding to utf-8
 set encoding=utf-8
@@ -168,24 +159,6 @@ endif
 colorscheme one
 set background=dark " for the dark version
 
-
-" colorscheme onehalfdark
-" let g:airline_theme='onehalfdark'
-" " lightline
-" let g:lightline = { 'colorscheme': 'onehalfdark' }
-
-" colorscheme OceanicNext
-" hi Normal guibg=NONE ctermbg=NONE
-" hi LineNr guibg=NONE ctermbg=NONE
-" hi SignColumn guibg=NONE ctermbg=NONE
-" hi EndOfBuffer guibg=NONE ctermbg=NONE
-
-" colorscheme sonokai
-" let g:sonokai_style = 'default'
-" let g:sonokai_enable_italic_font = 1
-" let g:sonokai_transparent_background = 1
-" let g:enable_bold_font = 1
-
 " Configure the Tabline
 let g:airline_extensions = ['tabline', 'tagbar']
 let g:airline#extensions#tabline#enabled = 1
@@ -224,6 +197,17 @@ map <leader>e <c-w>w<CR>
 nnoremap <silent><leader>w :w!<CR>
 nnoremap <silent><leader>q :q!<CR>
 nnoremap <silent><leader>x :x<CR>
+
+
+" Shorcuts suggestions in https://levelup.gitconnected.com/improving-vim-workflow-with-fzf-3f8bedaca1b2
+" :GFiles
+nnoremap <C-p> :GFiles<Cr>
+
+" :Ag finder
+nnoremap <C-g> :Ag<Cr>
+
+" Buffers
+nnoremap <silent><leader>l :Buffers<CR>
 
 if has('nvim')
   " Source Vim configuration
