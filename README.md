@@ -68,9 +68,10 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 cp -R ~/.config/nvim ~/.config/nvim_bkp
 
 # Download configuration files    
-curl https://raw.githubusercontent.com/cezarmzz/dotfiles/40c3989bee6e5c9198895f6595e2f2b6b6b38f47/.config/nvim/init.vim > ~/.config/nvim/init.vim
-
-curl https://raw.githubusercontent.com/cezarmzz/dotfiles/40c3989bee6e5c9198895f6595e2f2b6b6b38f47/.config/nvim/coc-settings.json > ~/.config/nvim/coc-settings.json
+sh -c 'curl -fLo ~/.config/nvim/init.vim --create-dirs \
+	https://raw.githubusercontent.com/cezarmzz/dotfiles/40c3989bee6e5c9198895f6595e2f2b6b6b38f47/.config/nvim/init.vim'
+sh -c 'curl -fLo ~/.config/nvim/coc-settings.json --create-dirs \
+	https://raw.githubusercontent.com/cezarmzz/dotfiles/40c3989bee6e5c9198895f6595e2f2b6b6b38f47/.config/nvim/coc-settings.json'
 ```
 
 So now, open vim with command ```vim``` and type ```:PlugInstall``` and wait all plugins end up the installation.
