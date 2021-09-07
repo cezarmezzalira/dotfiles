@@ -14,13 +14,15 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'rstacruz/vim-hyperstyle'
-Plug 'jiangmiao/auto-pairs'
 Plug 'pearofducks/ansible-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/SyntaxComplete',
 Plug 'HerringtonDarkholme/yats.vim'   " TypeScript syntax
-Plug 'othree/yajs.vim', {'for': 'javascript'}
-Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
+" Plug 'othree/yajs.vim', {'for': 'javascript'}
+" Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
+Plug 'yuezk/vim-js'
+Plug 'elzr/vim-json'
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'alvan/vim-closetag'
 
