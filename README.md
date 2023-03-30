@@ -4,21 +4,19 @@ Hello!
 
 Welcome to my repository of configuration files to Linux Systems!
 
-Nowadays, I'm using Linux, more specific Zorion Core 16. I'm migrated from Pop! OS 20.04 recently because I'm not shure about the future of COSMIC. Sincerely, I'm fell confused.
-
-So, if you want to use my configuration files, I'm recomend you to use some linux distro based on Ubuntu 20.04+. If you use other Linux distro, be shure you installing Vim version 8+ or NeoVim 0.4.4+.
+Nowadays, I'm using Linux, at this time, Ubuntu 22.04 LTS in my main working machine.
 
 # Setup the tools
 
 ### Installing git and curl
 ```sh
-sudo apt update && sudo apt install git curl -y 
+sudo apt update && sudo apt install git curl build-essential -y 
 ```
 
 ### Installing Node Version Manager (nvm)
 ```sh
 # Dowload and Install
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # Include variables to PATH
 echo -e 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -57,8 +55,8 @@ curl https://raw.githubusercontent.com/cezarmzz/dotfiles/main/.vimrc > ~/.vimrc
 
 ### Or Installing NeoVim
 ```sh
-# Installing NeoVim
-sudo apt update && sudo apt install neovim -y 
+# Installing NeoVim & xclip to clipboard
+sudo apt update && sudo apt install neovim xclip -y 
 
 # Installing vim-plug plugin manager
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -69,9 +67,9 @@ cp -R ~/.config/nvim ~/.config/nvim_bkp
 
 # Download configuration files    
 sh -c 'curl -fLo ~/.config/nvim/init.vim --create-dirs \
-	https://raw.githubusercontent.com/cezarmzz/dotfiles/40c3989bee6e5c9198895f6595e2f2b6b6b38f47/.config/nvim/init.vim'
+	https://raw.githubusercontent.com/cezarmezzalira/dotfiles/main/.config/nvim/init.vim'
 sh -c 'curl -fLo ~/.config/nvim/coc-settings.json --create-dirs \
-	https://raw.githubusercontent.com/cezarmzz/dotfiles/40c3989bee6e5c9198895f6595e2f2b6b6b38f47/.config/nvim/coc-settings.json'
+	https://raw.githubusercontent.com/cezarmezzalira/dotfiles/main/.config/nvim/coc-settings.json'
 ```
 
 So now, open vim with command ```vim``` and type ```:PlugInstall``` and wait all plugins end up the installation.
