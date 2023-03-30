@@ -14,15 +14,13 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'rstacruz/vim-hyperstyle'
+Plug 'jiangmiao/auto-pairs'
 Plug 'pearofducks/ansible-vim'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/SyntaxComplete',
 Plug 'HerringtonDarkholme/yats.vim'   " TypeScript syntax
-" Plug 'othree/yajs.vim', {'for': 'javascript'}
-" Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
-Plug 'yuezk/vim-js'
-Plug 'elzr/vim-json'
+Plug 'othree/yajs.vim', {'for': 'javascript'}
+Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'alvan/vim-closetag'
 
@@ -52,7 +50,7 @@ set updatetime=300
 set list listchars=tab:\ \ ,trail:·
 
 set laststatus=2 " Always show the status line
-set clipboard=unnamedplus " Allow copy and paste from system clipboard
+set clipboard=unnamed,unnamedplus " Allow copy and paste from system clipboard
 set backspace=indent,eol,start " Delete characters outside of insert area
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
@@ -185,6 +183,22 @@ nnoremap <silent><leader>- :split<CR>
 " Delete Current Buffer
 nnoremap <silent><leader>' :bd<CR>
 
+map ; :Files<CR>
+map <C-]> :NvimTreeToggle<CR>
+map <F5> :e!<CR>                    " force reload current file
+map <leader>W :w<CR>
+map <leader>w :wincmd k<CR>        " go window up
+map <leader>s :wincmd j<CR>        " go window down
+map <leader>a :wincmd h<CR>        " go window left
+map <leader>d :wincmd l<CR>        " go window right
+map <leader>v :vertical :new<CR>   " open new vertical window
+map <leader>h :new<CR>             " open a new horizontal window
+map <leader>q :q<CR>               " it quit current vim buffer
+map <leader>Q :q!<CR>              " it force quit current vim buffer
+map <leader>n :tabnew<CR>          " create a new tab
+map <leader>z :tabprevious<CR>     " move to previous tab
+map <leader>x :tabnext<CR>         " move to next tab
+
 " Buffers Navigation
 map <leader>, :bp<cr>
 map <leader>. :bn<cr>
@@ -195,10 +209,10 @@ map <leader>r :e!<CR>
 " Alternate between windows
 map <leader>e <c-w>w<CR>
 
-"" Faster saving and exiting
-nnoremap <silent><leader>w :w!<CR>
-nnoremap <silent><leader>q :q!<CR>
-nnoremap <silent><leader>x :x<CR>
+noremap <leader>y "*y
+noremap <leader>p "*p
+noremap <leader>yy "+y
+noremap <leader>pp "+p
 
 
 " Shorcuts suggestions in https://levelup.gitconnected.com/improving-vim-workflow-with-fzf-3f8bedaca1b2
