@@ -245,7 +245,5 @@ export EDITOR=nvim
 # Should your editor deal with streamed vs on disk files differently, also set...
 export K9S_EDITOR=nvim
 
-
-GITLAB_TOKEN=glpat-RFyTUgc-5aRP4NLfCwC1
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
