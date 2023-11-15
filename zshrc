@@ -196,22 +196,23 @@ gudev() {
 
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
-  # host          # Hostname section
+  host          # Hostname section
   dir           # Current directory section
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
-  node
-  python
-  venv
-  package
+  node		# node version
+  python	# python version
+  venv		# virtual environment name
+  package	# package name
   exec_time     # Execution time
-  time		      # Current time
+  time		# Current time
   line_sep      # Line break
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
 
 )
+
 SPACESHIP_USER_SHOW="always"
 SPACESHIP_HOST_SHOW="always"
 SPACESHIP_HOST_PREFIX="@"
@@ -221,29 +222,6 @@ SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_FORMAT='%D{%H:%M:%S.%.}'
 SPACESHIP_TIME_PREFIX="now is: "
-
-# ASDF Config
-. $HOME/.asdf/asdf.sh
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
-
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-export KUBE_EDITOR=nvim
-export TERM=xterm-256color
-# Kubectl edit command will use this env var.
-export EDITOR=nvim
-# Should your editor deal with streamed vs on disk files differently, also set...
-export K9S_EDITOR=nvim
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
