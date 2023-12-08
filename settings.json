@@ -1,23 +1,28 @@
 {
-  "workbench.iconTheme": "file-icons",
-  "workbench.colorTheme": "Darcula",
-  "workbench.startupEditor": "welcomePage",
-  "debug.javascript.usePreview": false,
-  "telemetry.enableTelemetry": false,
-  "telemetry.enableCrashReporter": false,
-  "security.workspace.trust.enabled": false,
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.revealIfOpen": true,
+  "debug.toolBarLocation": "commandCenter",
+  "editor.hover.above": false,
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.bracketPairsHorizontal": "active",
   // Aumenta o tamanho da fonte do terminal
   "terminal.integrated.fontSize": 18,
   "editor.folding": true,
   "editor.tabSize": 2,
   "editor.fontSize": 18,
   "editor.lineHeight": 24,
-  "editor.fontFamily": "CodeNewRoman Nerd Font Mono",
+  "editor.fontFamily": "'JetBrainsMonoNL Nerd Font Mono','Ubuntu Mono Regular', 'Droid Sans Mono', 'monospace', 'Droid Sans Fallback'",
   "editor.fontLigatures": true,
   "editor.formatOnSave": true,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wrappingIndent": "same",
+  "editor.wordWrapColumn": 120,
   "explorer.compactFolders": false,
   "editor.renderLineHighlight": "line",
-  "workbench.editor.labelFormat": "short",
   "extensions.ignoreRecommendations": true,
   "breadcrumbs.enabled": true,
   "editor.parameterHints.enabled": false,
@@ -29,48 +34,95 @@
   ],
   "javascript.updateImportsOnFileMove.enabled": "never",
   "typescript.updateImportsOnFileMove.enabled": "never",
+  "html.autoClosingTags": true,
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
+    "javascript": "javascriptreact"
   },
   // autofix eslint
   "[javascript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
+    },
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[javascriptreact]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
-  },
-  "[typescript]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
+    },
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "files.associations": {
-    ".stylelintrc": "json",
-    ".prettierrc": "json"
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+  "editor.renderControlCharacters": true,
+  "editor.suggestSelection": "first",
+  "material-icon-theme.folders.associations": {
+    "modules": "Components",
+    "entities": "Class",
+    "repositories": "Mappings",
+    "infra": "App",
+    "http": "Container",
+    "typeorm": "Database"
+  },
+  "files.autoSave": "afterDelay",
+  "json.schemas": [],
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "git.ignoreRebaseWarning": true,
+  "editor.suggest.showMethods": true,
+  "editor.suggest.preview": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.snippetSuggestions": "top",
+  "window.commandCenter": true,
+  "terminal.integrated.cursorBlinking": true,
+  "workbench.iconTheme": "helium-icon-theme",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "editor.mouseWheelZoom": true,
+  "cSpell.language": "en,pt,pt-BR",
+  "workbench.colorTheme": "Vim Dark Hard",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.rulers": [
+      80,
+      300
+    ],
   },
   "git.autofetch": true,
-  "editor.renderControlCharacters": true,
-  "window.titleBarStyle": "custom",
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "material-icon-theme.folders.associations": {
-      "modules": "Components",
-      "entities": "Class",
-      "repositories": "Mappings",
-      "infra": "App",
-      "http": "Container",
-      "typeorm": "Database"
-  }  
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true
+  },
+  "editor.renderWhitespace": "all",
+  "window.zoomLevel": 1,
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  }
 }
