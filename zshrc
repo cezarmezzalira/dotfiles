@@ -100,128 +100,60 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# ######################## #
-#  GIT / GIT FLOW Sripts   #
-# ######################## #
-
-alias gtp="git push"
-
-# git stash
-alias gsh="git stash"
-alias gsha="git stash apply"
-alias gshl="git stash list"
-alias gshc="git stash clear"
-
-# Git fetch
-alias gfo="git fetch origin"
-alias gfop="git fetch origin -p"
-
-# Git Tag
-alias gft="git fetch --tags"
-alias gpt="git push --tags"
-
-# Git Master Branch
-alias gcm="git checkout master"
-alias gpm="git pull origin master"
-alias gmm="git merge master"
-
-# Git Main Branch
-alias gcmain="git checkout main"
-alias gpmain="git pull origin main"
-alias gmmain="git merge main"
-
-# Git Develop Branch
-alias gcd="git checkout develop"
-alias gpd="git pull origin develop"
-alias gmd="git merge develop"
-
-
-# GIT Flow feature
-gckf() { git checkout feature/$1; }
-gffs() { git flow feature start $1; }
-gffp() { git flow feature publish $(git_flow_current_branch); }
-gfff() { git pull origin develop; git flow feature finish $(git_flow_current_branch); }
-
-# GIT bugfix
-gckb() { git checkout bugfix/$1; }
-gfbs() { git flow bugfix start $1; }
-gfbp() { git flow bugfix publish $(git_flow_current_branch); }
-gfbf() { git pull origin develop; git flow bugfix finish $(git_flow_current_branch); }
-
-# GIT hotfix
-gch() { git checkout hotfix/$1; }
-gfhs() { git flow hotfix start $1; }
-gfhfp() { git flow hotfix publish $(git_flow_current_branch); }
-gfhf() { git pull origin develop; git flow hotfix finish $(git_flow_current_branch); }
-# gfhf() { git fetch --tags; git pull origin master; git flow hotfix finish -F $(git_flow_current_branch); }
-
-# GIT release - I dont like to use it, prefere npm version :D 
-# gcr()  { git checkout release/$1;  }
-# gfrs() { git flow release start $1; }
-# gfrf() { git flow release finish; }
-
-# GIT current branch
-git_flow_current_branch(){ git rev-parse --abbrev-ref HEAD | cut -d'/' -f 2; }
-
-# Git Last Tag - Show last tag generated
-gltag() {
-	LAST_TAG=$(git for-each-ref --format="%(refname:short)" --sort=taggerdate refs/tags | tail -1 | git for-each-ref --format="%(refname:short)" --sort=taggerdate refs/tags | tail -1);
-# 	echo $LAST_TAG | xargs echo -n | pbcopy;
- 	echo "LAST TAG: "$LAST_TAG;
-}
-
-# gcbranchs() {
-	# git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
-# }
-
-# Update local repo with remote 
-# - update master
-# - update develop
-# - fetch branchs
-# - fetch tags
-# - remove branchs deleteds in remote
-uprep() {
-  gcm; gpm; gcmain; gpmain; gcd; gpd; gft; git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
-}
-
-gudev() {
-  git checkout develop && git pull origin develop
-}
-
-#*******************#
-# End Git Script    #
-#*******************#
-
-
 SPACESHIP_PROMPT_ORDER=(
-  user          # Username section
-  host          # Hostname section
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  node		# node version
-  python	# python version
-  venv		# virtual environment name
-  package	# package name
-  exec_time     # Execution time
-  time		# Current time
-  line_sep      # Line break
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-
+  # --- Linha 1: Contexto de Localização e Código ---
+  time          # Hora atual (bom ver no início para logs visuais)
+  user          # Usuário (oculto por padrão, aparece via SSH)
+  host          # Hostname (oculto por padrão, aparece via SSH)
+  dir           # Diretório atual (essencial estar no começo)
+  
+  # --- Linha 1: Ferramentas e Ambientes de Desenvolvimento ---
+  git           # Git status (prioridade máxima em desenvolvimento)
+  node          # Versão do Node.js
+  venv          # Nome do Virtualenv Python (melhor antes da versão)
+  python        # Versão do Python
+  package       # Nome/Versão do pacote (package.json, Cargo.toml, etc.)
+  
+  # --- Linha 2: Informações de Execução e Comando ---
+  line_sep      # Quebra de linha (mantém o prompt limpa e focado)
+  exec_time     # Tempo de execução do último comando
+  jobs          # Indicador de processos em segundo plano
+  exit_code     # Código de saída (fica vermelho se o comando falhar)
+  char          # O caractere do prompt (ex: ❯)
 )
 
+# --- Ajustes finos adicionais recomendados ---
+SPACESHIP_TIME_SHOW=true          # Garante que o tempo vai aparecer
+SPACESHIP_PROMPT_ASYNC=true       # Renderiza o prompt de forma assíncrona (não trava o terminal)
+
+# --- Exibição de Usuário e Host ---
 SPACESHIP_USER_SHOW="always"
 SPACESHIP_HOST_SHOW="always"
-SPACESHIP_HOST_PREFIX="@"
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_CHAR_SYMBOL="❯"
-SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_FORMAT='%D{%H:%M:%S.%.}'
-SPACESHIP_TIME_PREFIX="now is: "
+SPACESHIP_HOST_PREFIX="@"        # Remove o espaço padrão, deixando "user@host" colados
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# --- Estrutura Geral ---
+SPACESHIP_PROMPT_ADD_NEWLINE=true  # Adiciona uma linha em branco entre os comandos (ótimo para legibilidade)
+
+# --- Caractere de Entrada ---
+SPACESHIP_CHAR_SYMBOL="❯"          # Símbolo elegante estilo 'Pure prompt'
+SPACESHIP_CHAR_SUFFIX=" "         # Garante um espaço confortável para começar a digitar
+
+# --- Configuração de Hora ---
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_TIME_FORMAT='%D{%H:%M:%S}' # Formato seguro (HH:MM:SS). Se quiser milissegundos precisos, use '%D{%H:%M:%S.%f}'
+SPACESHIP_TIME_PREFIX=""            # Removido o "now is: " para o início da linha ficar limpo e rápido de ler
+SPACESHIP_TIME_SUFFIX=" "           # Um pequeno espaço antes do usuário começar (ex: 23:31:00 user@mac...)
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.local/bin:$PATH"
+
+if ! infocmp "$TERM" >/dev/null 2>&1; then
+    export TERM=xterm-256color
+fi
